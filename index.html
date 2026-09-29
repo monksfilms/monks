@@ -160,12 +160,6 @@
   }
   .hero-dots button.on { background: #fff; width: 34px; }
 
-  .intro {
-    text-align: center; max-width: 560px; margin: 0 auto;
-    color: var(--soft); font-size: 15px; line-height: 1.65;
-  }
-  .intro strong { color: #fff; font-weight: 600; }
-  .intro a { text-decoration: underline; text-underline-offset: 3px; color: #fff; }
   .chip-row { display: flex; justify-content: center; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
   .chip {
     font-family: var(--ui); font-size: 9px; font-weight: 600;
@@ -340,13 +334,11 @@
     .hero { grid-template-columns: 1fr; min-height: auto; padding: 60px 0 40px; gap: 36px; }
     .hero-copy, .hero-play { grid-column: 1; }
     .hero-play { justify-self: start; flex-direction: row; gap: 20px; }
-    .play { width: 64px; height: 64px; }
-    .play svg { width: 20px; height: 20px; }
+    .play { width: 50px; height: 50px; border-width: 1.5px; }
+    .play svg { width: 16px; height: 16px; margin-left: 3px; }
     .hero-dots { gap: 6px; }
     .hero-dots button { width: 12px; }
     .hero-dots button.on { width: 22px; }
-    .intro { text-align: left; font-size: 14px; }
-    .intro .chip-row { justify-content: flex-start; }
     .grid { grid-template-columns: 1fr; }
     .reels { grid-template-columns: repeat(2, 1fr); }
     section.block { padding-top: 60px; }
@@ -410,18 +402,6 @@
           <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
         </button>
         <div class="hero-dots" id="heroDots"></div>
-      </div>
-    </div>
-
-    <div class="intro">
-      <p>A <strong>Monks Films</strong> é uma produtora que transita entre formatos e linguagens — do institucional ao documental, do comercial ao videoclipe. Acreditamos que o audiovisual não é só sobre estética: é sobre <strong>intenção</strong>. <a href="#contato">Fale com a gente.</a></p>
-      <div class="chip-row">
-        <span class="chip red">YouTube</span>
-        <span class="chip">Comerciais</span>
-        <span class="chip">Videoclipes</span>
-        <span class="chip">Documentários</span>
-        <span class="chip">Curtas</span>
-        <span class="chip">Cinema</span>
       </div>
     </div>
 
@@ -502,19 +482,19 @@
 
 <script>
 /* ══════ PROJETOS — edite aqui ══════
-   id: código do YouTube · start: segundo inicial ao abrir o vídeo (opcional)
+   id: código do YouTube · dur: duração em segundos · start: segundo inicial ao abrir o vídeo (opcional)
    A ordem aqui é a ordem do showreel do topo. */
 const PROJECTS = [
-  { id:'kPS4Lbr1Ma0', title:'Memphis', sub:'Mais um louco para o bando', client:'Corinthians TV' },
-  { id:'DuY7mSl_0QU', title:'A Garro la Ocho', sub:'Rodrigo Garro veste a 8', client:'Corinthians TV' },
-  { id:'Me8n8PrC0DU', title:'Bastidores da Loucura', sub:'A conquista do 31º Campeonato Paulista', client:'Corinthians TV' },
-  { id:'6W5VeZxx9YE', start:1630, title:'Corinthians x Vasco', sub:'Bastidores · Final da Copa do Brasil 2025', client:'Corinthians TV' },
-  { id:'8snCdCDnhBk', start:749, title:'Flamengo 0 x 2 Corinthians', sub:'Bastidores · Supercopa Rei 2026', client:'Corinthians TV' },
-  { id:'1M3Df8I8xbk', title:'Chargers no CT', sub:'Los Angeles Chargers treinam no CT do Corinthians', client:'Corinthians TV · NFL' },
-  { id:'14-RQleVMwI', title:'NFL Game', sub:'Packers x Eagles', client:'Corinthians TV · NFL' },
-  { id:'jhcyOHU31Mg', title:'Aqui é Corinthians', sub:'これがコリンチャンスです', client:'Corinthians TV' },
-  { id:'L2zFO6A6mxk', start:22, title:'Derby · Copa do Brasil', sub:'Bastidores · Corinthians x Palmeiras · Oitavas 2025', client:'Corinthians TV' },
-  { id:'ltQ79662j6c', start:121, title:'Derby 2 x 0', sub:'Bastidores · Corinthians x Palmeiras · Brasileirão 2024', client:'Corinthians TV' },
+  { id:'kPS4Lbr1Ma0', dur:704, title:'Memphis', sub:'Mais um louco para o bando', client:'Corinthians TV' },
+  { id:'DuY7mSl_0QU', dur:114, title:'A Garro la Ocho', sub:'Rodrigo Garro veste a 8', client:'Corinthians TV' },
+  { id:'Me8n8PrC0DU', dur:4976, title:'Bastidores da Loucura', sub:'A conquista do 31º Campeonato Paulista', client:'Corinthians TV' },
+  { id:'6W5VeZxx9YE', dur:3398, start:1630, title:'Corinthians x Vasco', sub:'Bastidores · Final da Copa do Brasil 2025', client:'Corinthians TV' },
+  { id:'8snCdCDnhBk', dur:1929, start:749, title:'Flamengo 0 x 2 Corinthians', sub:'Bastidores · Supercopa Rei 2026', client:'Corinthians TV' },
+  { id:'1M3Df8I8xbk', dur:139, title:'Chargers no CT', sub:'Los Angeles Chargers treinam no CT do Corinthians', client:'Corinthians TV · NFL' },
+  { id:'14-RQleVMwI', dur:249, title:'NFL Game', sub:'Packers x Eagles', client:'Corinthians TV · NFL' },
+  { id:'jhcyOHU31Mg', dur:96, title:'Aqui é Corinthians', sub:'これがコリンチャンスです', client:'Corinthians TV' },
+  { id:'L2zFO6A6mxk', dur:1611, start:22, title:'Derby · Copa do Brasil', sub:'Bastidores · Corinthians x Palmeiras · Oitavas 2025', client:'Corinthians TV' },
+  { id:'ltQ79662j6c', dur:1302, start:121, title:'Derby 2 x 0', sub:'Bastidores · Corinthians x Palmeiras · Brasileirão 2024', client:'Corinthians TV' },
 ];
 
 /* ══════ REELS — edite aqui ══════ */
@@ -600,32 +580,44 @@ function setHero(i, instant) {
   [...dotsEl.children].forEach((d, j) => d.classList.toggle('on', j === i));
 }
 
+// Cada trecho começa num ponto aleatório entre 12% e 82% do vídeo, pulando a introdução
 function cue(slot, i) {
-  const pl = players[slot];
+  const pl = players[slot], p = PROJECTS[i];
   ready[slot] = false;
-  pl._want = i; pl._seeked = false;
-  pl.loadVideoById({ videoId: PROJECTS[i].id, startSeconds: PROJECTS[i].start || 0 });
-}
-
-// Pula a introdução: cada trecho começa num ponto aleatório entre 12% e 82% do vídeo
-function seekRandom(slot) {
-  const pl = players[slot], d = pl.getDuration();
-  pl._seeked = true;
-  if (d > 30) pl.seekTo(Math.floor(d * (0.12 + Math.random() * 0.7)), true);
-  setTimeout(() => { if (pl._seeked && !ready[slot] && pl.getPlayerState() === 1) markReady(slot); }, 1500);
+  pl._want = i;
+  pl._t0 = p.dur > 40 ? Math.floor(p.dur * (0.12 + Math.random() * 0.7)) : (p.start || 0);
+  pl.loadVideoById({ videoId: p.id, startSeconds: pl._t0 });
 }
 
 function markReady(slot) {
+  if (ready[slot]) return;
   ready[slot] = true;
   if (pending === slot) swap();
 }
 
 function onState(slot, e) {
-  layers[slot].classList.toggle('stall', e.data !== 1);
-  if (e.data !== 1) return;
-  if (!players[slot]._seeked) seekRandom(slot);
-  else if (!ready[slot]) markReady(slot);
+  if (e.data === 1) markReady(slot);
 }
+
+// Alguns navegadores não repassam os eventos do YouTube; confirma pelo avanço do tempo do vídeo.
+// Se o vídeo da frente parar (autoplay bloqueado, carregando), ele some para não mostrar os botões do YouTube.
+let frontLast = -1, frontStill = 0;
+setInterval(() => {
+  if (!apiOk) return;
+  const fp = players[front];
+  if (!paused && fp._want != null && layers[front].classList.contains('on')) {
+    const t = fp.getCurrentTime();
+    frontStill = t === frontLast ? frontStill + 1 : 0;
+    frontLast = t;
+    layers[front].classList.toggle('stall', frontStill >= 2);
+  }
+  [0, 1].forEach(slot => {
+    const pl = players[slot];
+    if (pl._want == null || ready[slot]) return;
+    const t = pl.getCurrentTime();
+    if ((pl.getVideoData() || {}).video_id === PROJECTS[pl._want].id && t > pl._t0 + 0.25 && t < pl._t0 + 30) markReady(slot);
+  });
+}, 300);
 
 function swap() {
   pending = null;
@@ -680,7 +672,7 @@ window.onYouTubeIframeAPIReady = () => {
     backdrop.appendChild(layer);
     layers[slot] = layer;
     players[slot] = new YT.Player(mount, {
-      playerVars: { autoplay: 1, mute: 1, controls: 0, disablekb: 1, fs: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1, rel: 0 },
+      playerVars: { origin: location.origin, autoplay: 1, mute: 1, controls: 0, disablekb: 1, fs: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1, rel: 0 },
       events: {
         onReady: e => {
           e.target.mute();
