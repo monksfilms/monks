@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Monks Films — Produtora Audiovisual</title>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="preconnect" href="https://www.google.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@500;600&display=swap" rel="stylesheet">
@@ -40,6 +43,13 @@
     position: absolute; top: 0; left: 0; right: 0; height: 115vh; z-index: 0; overflow: hidden;
     background: #000;
   }
+  .poster {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0; transform: scale(1.04);
+    transition: opacity 1s ease; filter: saturate(0.85);
+  }
+  .poster.on { opacity: 1; animation: slowzoom 9s ease-out forwards; }
+  @keyframes slowzoom { from { transform: scale(1.04); } to { transform: scale(1.14); } }
   .reel-layer {
     position: absolute; top: 50%; left: 50%;
     width: max(100vw, 204.5vh); height: max(115vh, 56.25vw);
@@ -253,19 +263,28 @@
   .about .chip-row { justify-content: flex-start; margin-top: 24px; }
 
   /* ─── CLIENTS ─── */
-  .clients {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+  .clients-strip {
+    display: flex; align-items: center; gap: 48px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    scroll-margin-top: 20px;
   }
-  .client {
-    height: 150px; display: grid; place-items: center;
-    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  .strip-label {
+    font-family: var(--ui); font-weight: 600; font-size: 10px;
+    letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; gap: 14px; white-space: nowrap;
   }
-  .client img {
-    max-height: 56px; max-width: 60%; width: auto;
-    filter: brightness(0) invert(1); opacity: 0.6; transition: opacity .25s;
+  .strip-label::after { content: ''; width: 28px; height: 1px; background: var(--line); }
+  .strip-logos {
+    flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 24px;
   }
-  .client:hover img { opacity: 1; }
+  .strip-logos img {
+    height: var(--h); width: auto; max-width: 22%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.5; transition: opacity .3s ease;
+  }
+  .strip-logos img:hover { opacity: 0.95; }
 
   /* ─── CONTACT ─── */
   .contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: end; }
@@ -314,7 +333,6 @@
     .reels { grid-template-columns: repeat(3, 1fr); }
     .about, .contact { grid-template-columns: 1fr; gap: 36px; }
     .about-img { aspect-ratio: 16/11; }
-    .clients { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 720px) {
     .wrap { padding: 0 16px; }
@@ -334,8 +352,11 @@
     .hero { grid-template-columns: 1fr; min-height: auto; padding: 60px 0 40px; gap: 36px; }
     .hero-copy, .hero-play { grid-column: 1; }
     .hero-play { justify-self: start; flex-direction: row; gap: 20px; }
-    .play { width: 50px; height: 50px; border-width: 1.5px; }
-    .play svg { width: 16px; height: 16px; margin-left: 3px; }
+    .play { width: 40px; height: 40px; border-width: 1.2px; }
+    .play svg { width: 12px; height: 12px; margin-left: 2px; }
+    .clients-strip { flex-direction: column; align-items: stretch; gap: 16px; padding: 20px 0; }
+    .strip-logos { gap: 14px; }
+    .strip-logos img { height: calc(var(--h) * 0.8); }
     .hero-dots { gap: 6px; }
     .hero-dots button { width: 12px; }
     .hero-dots button.on { width: 22px; }
@@ -405,6 +426,16 @@
       </div>
     </div>
 
+    <section class="clients-strip" id="clientes" aria-label="Clientes">
+      <span class="strip-label">Clientes</span>
+      <div class="strip-logos">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike" style="--h:19px">
+        <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Sport_Club_Corinthians_Paulista_crest.svg" alt="Corinthians" style="--h:38px">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Powerade-logo-2019.svg" alt="Powerade" style="--h:24px">
+        <img src="imgs/logo-athleta.png" alt="Athleta" style="--h:17px">
+      </div>
+    </section>
+
     <section class="block" id="projetos">
       <div class="label">
         <span id="projCount">Projetos</span>
@@ -435,16 +466,6 @@
             <span class="chip">Cinema</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="block" id="clientes">
-      <div class="label"><span>Com quem já trabalhamos</span></div>
-      <div class="clients">
-        <div class="client"><img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Powerade-logo-2019.svg" alt="Powerade"></div>
-        <div class="client"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike"></div>
-        <div class="client"><img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Sport_Club_Corinthians_Paulista_crest.svg" alt="Corinthians" style="max-height:86px"></div>
-        <div class="client"><img src="imgs/logo-athleta.png" alt="Athleta" style="max-height:70px"></div>
       </div>
     </section>
 
@@ -565,9 +586,28 @@ function fitTitle() {
 }
 addEventListener('resize', fitTitle);
 
+// Frame do próprio vídeo (sem texto) mostrado na hora, enquanto o vídeo carrega
+const posters = {};
+const frameUrl = (id, q) => `https://i.ytimg.com/vi/${id}/${q}2.jpg`;
+function showPoster(i) {
+  const id = PROJECTS[i].id;
+  let img = posters[id];
+  if (!img) {
+    img = new Image();
+    img.className = 'poster'; img.alt = '';
+    img.onerror = () => { img.onerror = null; img.src = frameUrl(id, 'hq'); };
+    img.src = frameUrl(id, 'maxres');
+    backdrop.insertBefore(img, backdrop.firstChild);
+    posters[id] = img;
+  }
+  Object.values(posters).forEach(p => p.classList.toggle('on', p === img));
+  new Image().src = frameUrl(PROJECTS[(i + 1) % PROJECTS.length].id, 'maxres');
+}
+
 function setHero(i, instant) {
   cur = i;
   const p = PROJECTS[i];
+  showPoster(i);
   const apply = () => {
     document.getElementById('heroEyebrow').textContent = 'Showreel · Projeto ' + pad(i + 1);
     document.getElementById('heroTitle').textContent = p.title;
@@ -585,6 +625,7 @@ function cue(slot, i) {
   const pl = players[slot], p = PROJECTS[i];
   ready[slot] = false;
   pl._want = i;
+  if (!pl._ok) { pl._queue = i; return; }
   pl._t0 = p.dur > 40 ? Math.floor(p.dur * (0.12 + Math.random() * 0.7)) : (p.start || 0);
   pl.loadVideoById({ videoId: p.id, startSeconds: pl._t0 });
 }
@@ -605,7 +646,7 @@ let frontLast = -1, frontStill = 0;
 setInterval(() => {
   if (!apiOk) return;
   const fp = players[front];
-  if (!paused && fp._want != null && layers[front].classList.contains('on')) {
+  if (!paused && fp._ok && fp._want != null && layers[front].classList.contains('on')) {
     const t = fp.getCurrentTime();
     frontStill = t === frontLast ? frontStill + 1 : 0;
     frontLast = t;
@@ -613,7 +654,7 @@ setInterval(() => {
   }
   [0, 1].forEach(slot => {
     const pl = players[slot];
-    if (pl._want == null || ready[slot]) return;
+    if (!pl._ok || pl._want == null || ready[slot]) return;
     const t = pl.getCurrentTime();
     if ((pl.getVideoData() || {}).video_id === PROJECTS[pl._want].id && t > pl._t0 + 0.25 && t < pl._t0 + 30) markReady(slot);
   });
@@ -626,18 +667,26 @@ function swap() {
   layers[front].classList.add('on');
   layers[old].classList.remove('on');
   ready[old] = false;
-  setHero(players[front]._want);
+  if (cur !== players[front]._want) setHero(players[front]._want);
   clearTimeout(timer);
   timer = setTimeout(nextClip, CLIP_MS);
   setTimeout(() => {
-    players[old].pauseVideo();
+    if (players[old]._ok) players[old].pauseVideo();
     if (!paused) cue(old, (cur + 1) % PROJECTS.length);
   }, 1100);
 }
 
 function nextClip() {
   const back = 1 - front;
-  if (ready[back]) swap(); else pending = back;
+  if (ready[back]) return swap();
+  pending = back;
+  // O próximo trecho não chegou a tempo: segue para o próximo projeto com o frame parado
+  timer = setTimeout(() => {
+    if (pending !== back) return;
+    layers[front].classList.remove('on');
+    if (players[front]._ok) players[front].pauseVideo();
+    setHero(players[back]._want);
+  }, 1200);
 }
 
 function playClip(i) {
@@ -663,7 +712,6 @@ function resumeReel() {
 }
 
 window.onYouTubeIframeAPIReady = () => {
-  let loaded = 0;
   [0, 1].forEach(slot => {
     const layer = document.createElement('div');
     layer.className = 'reel-layer';
@@ -675,8 +723,11 @@ window.onYouTubeIframeAPIReady = () => {
       playerVars: { origin: location.origin, autoplay: 1, mute: 1, controls: 0, disablekb: 1, fs: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1, rel: 0 },
       events: {
         onReady: e => {
+          const pl = players[slot];
+          pl._ok = true;
           e.target.mute();
-          if (++loaded === 2) { apiOk = true; cue(0, cur); pending = 0; }
+          if (slot === 0) { apiOk = true; cue(0, cur); pending = 0; }
+          else if (pl._queue != null) cue(1, pl._queue);
         },
         onStateChange: e => onState(slot, e),
         onError: () => cue(slot, (players[slot]._want + 1) % PROJECTS.length),
